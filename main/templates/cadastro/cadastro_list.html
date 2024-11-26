@@ -1,27 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Lista de Cadastros</title>
+    
+    <!-- Importando fonte do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+            font-size: 16px;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f1f1f1;
+        }
+
+        tr:hover td {
+            background-color: #f1c40f;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        a:hover {
+            background-color: #2980b9;
+        }
+    </style>
 </head>
 <body>
-    <h1>Lista de Cadastros</h1>
-    <table>
-        <tr>
-            <th>Nome</th>
-            <th>CPF</th>
-            <th>Data de Nascimento</th>
-            <th>Ações</th>
-        </tr>
-        {% for cadastro in cadastros %}
-        <tr>
-            <td>{{ cadastro.nome }}</td>
-            <td>{{ cadastro.cpf }}</td>
-            <td>{{ cadastro.data_nascimento }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    <a href="{% url 'criar_cadastro' %}">Criar Novo Cadastro</a>
+    <div class="container">
+        <h1>Lista de Cadastros</h1>
+        <table>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Data de Nascimento</th>
+                <th>Ações</th>
+            </tr>
+            {% for cadastro in cadastros %}
+            <tr>
+                <td>{{ cadastro.nome }}</td>
+                <td>{{ cadastro.cpf }}</td>
+                <td>{{ cadastro.data_nascimento }}</td>
+                <td>
+                    <a href="{% url 'editar_cadastro' cadastro.id %}">Editar</a>
+                    <a href="{% url 'deletar_cadastro' cadastro.id %}">Deletar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        <a href="{% url 'criar_cadastro' %}">Criar Novo Cadastro</a>
+    </div>
 </body>
 </html>

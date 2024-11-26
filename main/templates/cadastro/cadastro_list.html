@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Lista de Cadastros</h1>
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Data de Nascimento</th>
+            <th>Ações</th>
+        </tr>
+        {% for cadastro in cadastros %}
+        <tr>
+            <td>{{ cadastro.nome }}</td>
+            <td>{{ cadastro.cpf }}</td>
+            <td>{{ cadastro.data_nascimento }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'criar_cadastro' %}">Criar Novo Cadastro</a>
+</body>
+</html>
